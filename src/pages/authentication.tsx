@@ -30,7 +30,22 @@ export default function Authentincation() {
           valueChanged={setPassword}
           obrigatory
         />
-        
+        <button
+          className={`w-full bg-indigo-500 hover:bg-indigo-400
+      text-white rounded-lg px-4 py-3 mt-6`}
+          onClick={submit}
+        >
+          {mode == "login" ? "Entrar" : "Cadastrar"}
+        </button>
+        <hr className={`my-6 border-gray-300 w-full`} />
+        <button
+          className={` w-full bg-red-500 hover:bg-red-400
+      text-white rounded-lg px-4 py-3 `}
+          onClick={submit}
+        >
+          <Image src={GoogleIcon} alt="tod" />
+          Entrar com Google
+        </button>
       </div>
     </div>
   );

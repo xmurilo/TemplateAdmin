@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { useState } from "react";
 import AuthInput from "../components/auth/AuthInput";
 import GoogleIcon from "../../public/google-logo-48 1.svg";
@@ -17,9 +19,16 @@ export default function Authentincation() {
   }
 
   return (
-    <div className={`flex flex-col h-sreen items-center justify-center`}>
-      <div className={`w-1/2`}>
-        <h1 className={` text-xl font-bold mb-5`}>
+    <div className={`flex h-sreen items-center justify-center`}>
+      <div className=" hidden md:block w-1/2 lg:w-2/3 ">
+        <img
+          src="https://source.unsplash.com/random"
+          alt="Imagem da Tela de Autenticação"
+          className="h-screen w-full object-cover"
+        />
+      </div>
+      <div className={`m-10 w-full md:w-1/2 lg:w-1/3  `}>
+        <h1 className={` text-3xl font-bold mb-5`}>
           {mode == "login" ? "Entre com a Sua Conta" : "Cadrastre-se na Plataforma"}
         </h1>
         <AuthInput label="Email" type="email" value={email} valueChanged={setEmail} obrigatory />
@@ -43,7 +52,7 @@ export default function Authentincation() {
       text-white rounded-lg px-4 py-3 `}
           onClick={submit}
         >
-          <Image src={GoogleIcon} alt="tod" />
+          {/* <Image src={GoogleIcon} alt="tod" /> */}
           Entrar com Google
         </button>
       </div>

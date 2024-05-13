@@ -85,14 +85,14 @@ export const SunIcon = (length = 6) => (
   </svg>
 );
 
-export const MoonIcon = (lenght = 6) => (
+export const MoonIcon = (length = 6) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className={`$h-${lenght} w-${lenght}`}
+    className={`$h-${length} w-${length}`}
   >
     <path
       strokeLinecap="round"

@@ -55,6 +55,24 @@ export default function Authentincation() {
           {/* <Image src={GoogleIcon} alt="tod" /> */}
           Entrar com Google
         </button>
+        {mode === "login" ? (
+          <p className="mt-8">
+            Novo por aqui?
+            <a
+              onClick={() => setMode("register")}
+              className="text-blue-500 hover:text-blue-700 font-semibold cursor-pointer"
+            > Crie uma conta gratuitamente</a>
+          </p>
+        ) : (
+          <p className="mt-8">
+            Ja faz parte da nossa comunidade?
+            <a
+              onClick={() => setMode("login")}
+              className="text-blue-500 hover:text-blue-700 font-semibold cursor-pointer"
+            > Entre com suas credenciais</a>
+          </p>
+        )}
+        
       </div>
     </div>
   );

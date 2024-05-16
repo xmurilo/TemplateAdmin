@@ -5,8 +5,12 @@ import AuthInput from "../components/auth/AuthInput";
 import { WarningIcon } from "../components/Icons";
 import GoogleIcon from "../../public/google-logo-48 1.svg";
 import Image from "next/image";
+import useAuth from "../data/hooks/useAuth";
 
 export default function Authentincation() {
+  
+  const { loginGoogle } = useAuth();
+
   const [error, setError] = useState<any>(null);
   const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
@@ -67,7 +71,7 @@ export default function Authentincation() {
         <button
           className={` w-full bg-red-500 hover:bg-red-400
       text-white rounded-lg px-4 py-3 `}
-          onClick={submit}
+          onClick={loginGoogle}
         >
           {/* <Image src={GoogleIcon} alt="tod" /> */}
           Entrar com Google

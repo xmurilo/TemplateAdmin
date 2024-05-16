@@ -8,7 +8,6 @@ import Image from "next/image";
 import useAuth from "../data/hooks/useAuth";
 
 export default function Authentincation() {
-  
   const { loginGoogle } = useAuth();
 
   const [error, setError] = useState<any>(null);
@@ -69,13 +68,13 @@ export default function Authentincation() {
         </button>
         <hr className={`my-6 border-gray-300 w-full`} />
         <button
-          className={` w-full bg-red-500 hover:bg-red-400
-      text-white rounded-lg px-4 py-3 `}
+          className={`flex justify-center gap-4 items-center w-full hover:bg-black hover:text-white transition duration-450 rounded-lg px-4 py-3`}
           onClick={loginGoogle}
         >
-          {/* <Image src={GoogleIcon} alt="tod" /> */}
+          <Image src={GoogleIcon} alt="Google Icon" />
           Entrar com Google
         </button>
+
         {mode === "login" ? (
           <p className="mt-8">
             Novo por aqui?

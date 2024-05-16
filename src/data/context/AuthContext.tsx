@@ -9,13 +9,23 @@ interface AuthContextProps {
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
-
+async function normalizedUser(userFirebase: firebase.User): Promise<User> {
+  const token = await userFirebase.getIdToken();
+  return {
+    uid: userFirebase.uid,
+    name: userFirebase.displayName || "",
+    email: userFirebase.email || "",
+    token,
+    provider: userFirebase.providerData[0]?.providerId || "",
+    imageUrl: userFirebase.photoURL || "",
+  };
+}
 
 export function AuthProvider(props: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
   async function loginGoogle() {
-
+    
   }
 
   return (

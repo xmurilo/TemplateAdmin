@@ -1,11 +1,13 @@
 import route from "next/router";
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import firebase from "../../firebase/config";
 import User from "@/src/model/User";
 import Cookies from "js-cookie";
 interface AuthContextProps {
   user: User | null;
+  isLoading: boolean;
   loginGoogle: () => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -36,7 +38,7 @@ export function AuthProvider(props: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function configureSssion(userFirebase: firebase.User) {
+  async function configureSssion(userFirebase: firebase.User | null) {
     if (userFirebase?.email) {
       const user = await normalizedUser(userFirebase);
       setUser(user);
@@ -46,7 +48,7 @@ export function AuthProvider(props: { children: ReactNode }) {
     } else {
       setUser(null);
       manageCookies(false);
-      setIsLoading(true);
+      setIsLoading(false);
       return false;
     }
   }
@@ -58,13 +60,34 @@ export function AuthProvider(props: { children: ReactNode }) {
         configureSssion(resp.user);
         route.push("/");
       }
-    } catch (e) {
-      console.log(e);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  async function logout() {
+    try {
+      setIsLoading(true);
+      await firebase.auth().signOut();
+      await configureSssion(null);
+    } finally {
+      setIsLoading(false);
     }
   }
 
+  // monitorar o token do usuário logado
+  useEffect(() => {
+    if (Cookies.get("admin-template-cod3r-auth")) {
+      const cancel = firebase.auth().onIdTokenChanged(configureSssion);
+      return () => cancel();
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, loginGoogle }}>{props.children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, loginGoogle, logout, isLoading }}>
+      {props.children}
+    </AuthContext.Provider>
   );
 }
 

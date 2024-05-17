@@ -6,8 +6,8 @@ import Cookies from "js-cookie";
 interface AuthContextProps {
   user: User | null;
   isLoading: boolean;
-  login: () => Promise<void>;
-  register: () => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
+  registerUser: (email: string, password: string) => Promise<void>;
   loginGoogle: () => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -55,7 +55,16 @@ export function AuthProvider(props: { children: ReactNode }) {
     }
   }
 
-  async function login() {}
+  async function login(email: string, password: string) {
+    try {
+      setIsLoading(true);
+      const resp = await firebase.auth().signInWithEmailAndPassword(email, password);
+      await configureSssion(resp.user);
+      route.push("/");
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   async function registerUser(email: string, password: string) {
     try {
@@ -100,7 +109,16 @@ export function AuthProvider(props: { children: ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loginGoogle, registerUser, logout, isLoading }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loginGoogle,
+        login,
+        registerUser,
+        logout,
+        isLoading,
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

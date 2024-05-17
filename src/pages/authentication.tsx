@@ -8,7 +8,7 @@ import Image from "next/image";
 import useAuth from "../data/hooks/useAuth";
 
 export default function Authentincation() {
-  const { loginGoogle } = useAuth();
+  const { login, registerUser, loginGoogle } = useAuth();
 
   const [error, setError] = useState<any>(null);
   const [mode, setMode] = useState<"login" | "register">("login");
@@ -20,13 +20,17 @@ export default function Authentincation() {
     setTimeout(() => setError(null), timeInSeconds * 1000);
   }
 
-  function submit() {
-    if (mode == "login") {
-      console.log("Login");
-    } else {
-      console.log("Cadastrar");
+  async function submit() {
+    try {
+      if (mode == "login") {
+        await login(email, password);
+      } else {
+        await registerUser(email, password);
+      }
+    } catch (e: any) {
+      showError(e?.message ?? "Erro desconhecido!");
     }
-  }
+}
 
   return (
     <div className={`flex h-sreen items-center justify-center`}>

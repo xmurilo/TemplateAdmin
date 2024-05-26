@@ -13,9 +13,9 @@ export default function Header(props: HeaderProps) {
   return (
     <header className={`flex`}>
       <Title title={props.title} subTitle={props.subTitle} />
-      <div className={`flex flex-grow justify-end items-center`}>
+      <div className={`w-16 sm:w-auto flex flex-grow flex-col-reverse sm:flex-row justify-end items-center`}>
         <ButtonToggleTheme theme={ctx.theme} toggleTheme={ctx.toggleTheme} />
-        <UserAvatar className="ml-3" />
+        <UserAvatar className="sm:ml-3" />
       </div>
     </header>
   );

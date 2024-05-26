@@ -9,7 +9,7 @@ export default function ButtonToggleTheme(props: ButtonToggleThemeProps) {
   return props.theme === "dark" ? (
     <div
       onClick={props.toggleTheme}
-      className={`hidden sm:flex items-center cursor-pointer bg-gradient-to-r from-yellow-300 to-orange-600 w-14 lg:w-24 h-8 p-1 rounded-full `}
+      className={`sm:flex items-center cursor-pointer bg-gradient-to-r from-yellow-300 to-orange-600 sm:w-14 lg:w-24 h-8 p-1 rounded-full `}
     >
       <div
         className={` 
@@ -24,7 +24,7 @@ export default function ButtonToggleTheme(props: ButtonToggleThemeProps) {
   ) : (
     <div
       onClick={props.toggleTheme}
-      className={`hidden sm:flex items-center justify-end cursor-pointer bg-gradient-to-r from-gray-500 to-gray-900 w-14 lg:w-24 h-8 p-1 rounded-full `}
+      className={` sm:flex items-center  sm:justify-end cursor-pointer bg-gradient-to-r from-gray-500 to-gray-900 sm:w-14 lg:w-24 h-8 p-1 rounded-full `}
     >
       <div className={`hidden lg:flex items-center mr-1 text-gray-300`}>
         <span className={`text-sm`}>Escuro</span>

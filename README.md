@@ -9,6 +9,7 @@ This is a template project for administration with internal authentication using
 - User login
 - User logout
 - Dark mode
+- Cookie storage
 - Intuitive and responsive interface
 
 ## Technologies Used

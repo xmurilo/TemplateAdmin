@@ -5,8 +5,10 @@ This is a template project for administration with internal authentication using
 ## Features
 
 - User authentication using Firebase Authentication
-- User management (creation, editing, and deletion)
-- Access control for different user levels
+- User registration
+- User login
+- User logout
+- Dark mode
 - Intuitive and responsive interface
 
 ## Technologies Used

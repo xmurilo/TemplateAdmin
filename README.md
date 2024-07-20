@@ -1,4 +1,4 @@
-# Projeto Template Admin Autenticação Int Firebase
+# Project Template Admin Auth With Firebase
 
 This is a template project for administration with internal authentication using Firebase. It was developed as part of the "Next.js and React - Cod3r" course on Udemy.
 
